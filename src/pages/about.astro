@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <div id="left-side" class="side">
+    <h2 class="title">
+      Today is going to be <span class="fancy">awesome</span>
+    </h2>
+  </div>
+  <div id="right-side" class="side">
+    <h2 class="title">
+      Today is going to be <span class="fancy">wonderful</span>
+    </h2>
+  </div>
+</Layout>
+
+<style>
+  .side {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    position: absolute;
+  }
+  .side .title {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    font-weight: bold;
+    font-size: 8vw;
+    margin: 0 15vw;
+    width: 70vw;
+  }
+  .side .fancy {
+    font-family: serif;
+    font-size: 1.3em;
+    line-height: 0.8em;
+  }
+  #left-side {
+    background-color: mediumslateblue;
+    z-index: 2;
+  }
+
+  #left-side .title {
+    color: #fff;
+  }
+  #left-side .fancy {
+    color: orange;
+  }
+
+  #right-side .title {
+    color: #000;
+  }
+  #right-side .fancy {
+    color: #FFF;
+  }
+
+  #right-side {
+    background-color: orange;
+  }
+</style>
+
+<script>
+  const left = document.getElementById("left-side") as HTMLDivElement;
+
+  const handleOnMove = (e: any) => {
+    const p = (e.clientX / window.innerWidth) * 100;
+
+    left.style.width = `${p}%`;
+  };
+  document.onmousemove = (e) => handleOnMove(e);
+
+  document.ontouchmove = (e) => handleOnMove(e.touches[0]);
+</script>

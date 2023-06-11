@@ -1,0 +1,11 @@
+---
+export interface Props {
+  text: string;
+  to: string;
+  style?: string;
+}
+
+const { text, to, style = 'default' } = Astro.props;
+---
+
+<a class={`border border-black px-1 py-2 hover:bg-black hover:text-white transition-all ${style}`} href={to}>{text}</a>
